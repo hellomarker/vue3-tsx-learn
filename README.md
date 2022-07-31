@@ -1,24 +1,8 @@
-# vue3-tsx-template
-
-## Project setup
+# works
+- [x] 集成typescript
 ```
-pnpm install
+vue add typescript
 ```
-
-### Compiles and hot-reloads for development
-```
-pnpm run serve
-```
-
-### Compiles and minifies for production
-```
-pnpm run build
-```
-
-### Lints and fixes files
-```
-pnpm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- [ ] 一个简单的弹窗hook
+- [ ] 移动端适配
+- [ ] 黑白换肤
