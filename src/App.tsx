@@ -1,7 +1,7 @@
 import { defineComponent } from "vue";
 import { RouterView } from "vue-router";
 
-// import ''
+import './App.scss'
 
 export default defineComponent({
   setup(props, { attrs, slots, emit }) {
