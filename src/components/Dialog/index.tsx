@@ -1,27 +1,33 @@
-import { FunctionalComponent, ref, reactive } from "vue";
-import { Modal, ModalProps } from "ant-design-vue";
+import { FunctionalComponent, ref, Transition, computed } from "vue";
+import "./index.scss";
 
 export const useDialog = () => {
   const visiable = ref(false);
-  const triggerDialog = () => {
+  const triggerDialog = (e: unknown) => {
     visiable.value = !visiable.value;
-    triggerVisiable();
+    if (e instanceof PointerEvent) {
+    }
   };
-  let triggerVisiable = () => {};
-  const Dialog: FunctionalComponent<ModalProps> = (props, { slots, emit }) => {
-    if (typeof props.visible === "boolean")
-      triggerVisiable = () => (props.visible = !props.visible);
-
+  const showStyle = computed(() => {
+    return "fade";
+  });
+  const Dialog: FunctionalComponent = (props, { slots, emit }) => {
     return (
-      <Modal
-        visible={visiable.value}
-        onCancel={triggerDialog}
-        okText="确定"
-        cancelText="取消"
-        {...props}
-      >
-        {slots}
-      </Modal>
+      <>
+        <Transition name="fade">
+          <div v-show={visiable.value} class={`mask`} onClick={triggerDialog}>
+            <div class="dialog">
+              {slots.title && <div class="dialog-title">{slots.title()}</div>}
+              {slots.default && (
+                <div class="dialog-default">{slots.default()}</div>
+              )}
+              {slots.buttoms && (
+                <div class="dialog-buttoms">{slots.buttoms()}</div>
+              )}
+            </div>
+          </div>
+        </Transition>
+      </>
     );
   };
   return { Dialog, triggerDialog };

@@ -4,6 +4,7 @@ module.exports = defineConfig({
   css: {
     loaderOptions: {
       css: {},
+      scss:{}
     },
   },
   transpileDependencies: true,
