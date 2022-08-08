@@ -6,20 +6,6 @@
   left: 0;
   background-color: #0006;
   z-index: 1000;
-  &.hide{
-    display: none;
-  }
-  &.fade{
-    animation: fade .5s 1 forwards;
-  }
-  @keyframes fade {
-    0%{
-      background-color: #0006;
-    }
-    100%{
-      background-color: #0000;
-    }
-  }
 }
 .dialog {
   position: absolute;

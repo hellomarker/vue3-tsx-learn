@@ -8,14 +8,17 @@ export const useDialog = () => {
     if (e instanceof PointerEvent) {
     }
   };
-  const showStyle = computed(() => {
-    return "fade";
-  });
   const Dialog: FunctionalComponent = (props, { slots, emit }) => {
     return (
       <>
+        {/* XXX transition不生效 */}
         <Transition name="fade">
-          <div v-show={visiable.value} class={`mask`} onClick={triggerDialog}>
+          <div
+            v-show={visiable.value}
+            key={visiable.value ? 1 : 0}
+            class={`mask`}
+            onClick={triggerDialog}
+          >
             <div class="dialog">
               {slots.title && <div class="dialog-title">{slots.title()}</div>}
               {slots.default && (
