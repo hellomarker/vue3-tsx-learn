@@ -1,4 +1,4 @@
-.mask{
+.mask {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -14,9 +14,13 @@
   transform: translate(-50%, -50%);
   width: 320px;
   background-color: #fff;
+  overflow: hidden;
   &-title {
     line-height: 24px;
     font-size: 16px;
-    padding: 8px 0;
+    margin: 8px 12px;
+  }
+  &-default {
+    margin: 8px 12px;
   }
 }
