@@ -36,27 +36,29 @@ export default defineComponent({
     visible: Boolean,
   },
   setup(props, { slots }) {
-    const { visible } = props;
-    return () => (
-      <>
-        {/* XXX transition不生效 */}
-        <Transition name="fade">
-          <div
-            v-show={visible}
-            class={`mask`}
-          >
-            <div class="dialog">
-              {slots.title && <div class="dialog-title">{slots.title()}</div>}
-              {slots.default && (
-                <div class="dialog-default">{slots.default()}</div>
-              )}
-              {slots.buttons && (
-                <div class="dialog-buttoms">{slots.buttons()}</div>
-              )}
+    return () => {
+      return (
+        <>
+          {/* XXX transition不生效 */}
+          <Transition name="fade">
+            <div
+              v-show={props.visible}
+              class={`mask`}
+              // onClick={() => (props.visible = false)}
+            >
+              <div class="dialog">
+                {slots.title && <div class="dialog-title">{slots.title()}</div>}
+                {slots.default && (
+                  <div class="dialog-default">{slots.default()}</div>
+                )}
+                {slots.buttons && (
+                  <div class="dialog-buttoms">{slots.buttons()}</div>
+                )}
+              </div>
             </div>
-          </div>
-        </Transition>
-      </>
-    );
+          </Transition>
+        </>
+      );
+    };
   },
 });
