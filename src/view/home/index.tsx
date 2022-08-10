@@ -1,10 +1,11 @@
 import { defineComponent, ref } from "vue";
-import { Dialog } from "@/components";
+import { YDialog } from "@/components";
 
 export default defineComponent({
   name: "homePage",
   setup() {
     const visible = ref(false);
+    const eVisible = ref(false);
     const triggerDialog = () => {
       visible.value = !visible.value;
     };
@@ -14,7 +15,7 @@ export default defineComponent({
         <>
           <img src={require("../../assets/logo.png")} alt="" />
           <button onClick={triggerDialog}>弹窗</button>
-          <Dialog visible={visible.value}>
+          <YDialog v-model={visible.value}>
             {{
               title: () => "这是标题",
               default: () => (
@@ -24,7 +25,7 @@ export default defineComponent({
                 </div>
               ),
             }}
-          </Dialog>
+          </YDialog>
         </>
       );
     };

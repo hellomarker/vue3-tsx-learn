@@ -1,50 +1,21 @@
 import { Transition, defineComponent } from "vue";
 import "./index.scss";
 
-// export const useDialog = () => {
-//   const visiable = ref(false);
-//   const triggerDialog = (e: unknown) => {
-//     if (e instanceof Event && e.target === e.currentTarget) {
-//       visiable.value = !visiable.value;
-//     }
-//   };
-//   const Dialog: FunctionalComponent = (props, { slots, emit }) => {
-//     return (
-//       <>
-//         {/* XXX Transition失效 */}
-//         <Transition name="fade">
-//           <div v-show={visiable.value} class={`mask`} onClick={triggerDialog}>
-//             <div class="dialog">
-//               {slots.title && <div class="dialog-title">{slots.title()}</div>}
-//               {slots.default && (
-//                 <div class="dialog-default">{slots.default()}</div>
-//               )}
-//               {slots.buttoms && (
-//                 <div class="dialog-buttoms">{slots.buttoms()}</div>
-//               )}
-//             </div>
-//           </div>
-//         </Transition>
-//       </>
-//     );
-//   };
-//   return { Dialog, triggerDialog };
-// };
-
 export default defineComponent({
+  name: "YDialog",
   props: {
-    visible: Boolean,
+    modelValue: Boolean,
   },
-  setup(props, { slots }) {
+  setup(props, { slots,emit }) {
     return () => {
       return (
         <>
           {/* XXX transition不生效 */}
           <Transition name="fade">
             <div
-              v-show={props.visible}
+              v-show={props.modelValue}
               class={`mask`}
-              // onClick={() => (props.visible = false)}
+              onClick={() => (emit('update:modelValue', false))}
             >
               <div class="dialog">
                 {slots.title && <div class="dialog-title">{slots.title()}</div>}
